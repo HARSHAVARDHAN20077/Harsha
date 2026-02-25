@@ -1,0 +1,214 @@
+SQL> DESC DEPOSIT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACTINO                                             VARCHAR2(5)
+ CNAME                                              VARCHAR2(15)
+ BNAME                                              VARCHAR2(15)
+ AMOUNT                                             NUMBER(9,2)
+ ADATE                                              DATE
+
+SQL> DESC BRANCH;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BNAME                                              VARCHAR2(15)
+ CITY                                               VARCHAR2(15)
+
+SQL> DESC CUSTOMERS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNAME                                              VARCHAR2(15)
+ CITY                                               VARCHAR2(15)
+
+SQL> DESC BORROW;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LOANNO                                             VARCHAR2(5)
+ CNAME                                              VARCHAR2(15)
+ BNAME                                              VARCHAR2(15)
+ AMOUNT                                             NUMBER(9,2)
+
+SQL> SELECT * FROM DEPOSIT;
+
+ACTIN CNAME           BNAME               AMOUNT ADATE                          
+----- --------------- --------------- ---------- ---------                      
+100   ANIL            VRCE                  1000 01-MAR-95                      
+101   HARSHA          REDDY                 5000 04-JAN-96                      
+102   MEHUL           KAROLBAGH             3500 17-NOV-95                      
+
+SQL> SELECT * FROM BRANCH;
+
+BNAME           CITY                                                            
+--------------- ---------------                                                 
+vrce            nagpur                                                          
+ajni            delhi                                                           
+harsha          kadapa                                                          
+chandi          nagpur                                                          
+
+SQL> SELECT * FROM CUSTOMERS;
+
+no rows selected
+
+SQL> INSERT INTO CUSTOMERS VALUES ('HARSHA','KADAPA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS VALUES ('ANIL','DELHI');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS VALUES ('SANDIP','SURAT');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS VALUES ('SUNIL','NAGPUR');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMERS VALUES ('MADURI','BOMBAY');
+
+1 row created.
+
+SQL> DESC CUSTOMERS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNAME                                              VARCHAR2(15)
+ CITY                                               VARCHAR2(15)
+
+SQL> SELECT * FROM CUSTOMERS;
+
+CNAME           CITY                                                            
+--------------- ---------------                                                 
+HARSHA          KADAPA                                                          
+ANIL            DELHI                                                           
+SANDIP          SURAT                                                           
+SUNIL           NAGPUR                                                          
+MADURI          BOMBAY                                                          
+
+SQL> INSERT INTO BORROW VALUES ('&LOANNO','&CNAME','&BNAME',&AMOUNT);
+Enter value for loanno: 201
+Enter value for cname: HARSHA
+Enter value for bname: REDDY
+Enter value for amount: 2000
+old   1: INSERT INTO BORROW VALUES ('&LOANNO','&CNAME','&BNAME',&AMOUNT)
+new   1: INSERT INTO BORROW VALUES ('201','HARSHA','REDDY',2000)
+
+1 row created.
+
+SQL> INSERT INTO BORROW VALUES ('206','ANIL','KUMAR',2500);
+
+1 row created.
+
+SQL> INSERT INTO BORROW VALUES ('401','MEHUL','GOUD',3000);
+
+1 row created.
+
+SQL> INSERT INTO BORROW VALUES('481','KRANTI','VRCE',8000);
+
+1 row created.
+
+SQL> SELECT *FROM BORROW;
+
+LOANN CNAME           BNAME               AMOUNT                                
+----- --------------- --------------- ----------                                
+201   HARSHA          REDDY                 2000                                
+206   ANIL            KUMAR                 2500                                
+401   MEHUL           GOUD                  3000                                
+481   KRANTI          VRCE                  8000                                
+
+SQL> SELECT ACTNO,AMOUNT FROM DEPOSIT;
+SELECT ACTNO,AMOUNT FROM DEPOSIT
+       *
+ERROR at line 1:
+ORA-00904: "ACTNO": invalid identifier 
+
+
+SQL> SELECT ACCNO, AMMOUNT
+  2  FROM DEPOSIT;
+SELECT ACCNO, AMMOUNT
+              *
+ERROR at line 1:
+ORA-00904: "AMMOUNT": invalid identifier 
+
+
+SQL> INSERT INTO DEPOSIT VALUES ('401',2000);
+INSERT INTO DEPOSIT VALUES ('401',2000)
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;
+SQL> hnfgh;
+SP2-0042: unknown command "hnfgh" - rest of line ignored.
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
+SQL> desc deposit;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACTINO                                             VARCHAR2(5)
+ CNAME                                              VARCHAR2(15)
+ BNAME                                              VARCHAR2(15)
+ AMOUNT                                             NUMBER(9,2)
+ ADATE                                              DATE
+
+SQL> desc branch;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BNAME                                              VARCHAR2(15)
+ CITY                                               VARCHAR2(15)
+
+SQL> desc branch;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BNAME                                              VARCHAR2(15)
+ CITY                                               VARCHAR2(15)
+
+SQL> select*from deposit;
+
+ACTIN CNAME           BNAME               AMOUNT ADATE                          
+----- --------------- --------------- ---------- ---------                      
+100   ANIL            VRCE                  1000 01-MAR-95                      
+101   HARSHA          REDDY                 5000 04-JAN-96                      
+102   MEHUL           KAROLBAGH             3500 17-NOV-95                      
+
+SQL> select*from borrow;
+
+LOANN CNAME           BNAME               AMOUNT                                
+----- --------------- --------------- ----------                                
+201   HARSHA          REDDY                 2000                                
+206   ANIL            KUMAR                 2500                                
+401   MEHUL           GOUD                  3000                                
+481   KRANTI          VRCE                  8000                                
+
+SQL> select*from customers;
+
+CNAME           CITY                                                            
+--------------- ---------------                                                 
+HARSHA          KADAPA                                                          
+ANIL            DELHI                                                           
+SANDIP          SURAT                                                           
+SUNIL           NAGPUR                                                          
+MADURI          BOMBAY                                                          
+
+SQL> select*from branch;
+
+BNAME           CITY                                                            
+--------------- ---------------                                                 
+vrce            nagpur                                                          
+ajni            delhi                                                           
+harsha          kadapa                                                          
+chandi          nagpur                                                          
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
